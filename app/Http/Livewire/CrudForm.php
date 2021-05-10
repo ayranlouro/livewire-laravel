@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Message;
 use Livewire\Component;
 
 class CrudForm extends Component
@@ -10,12 +11,17 @@ class CrudForm extends Component
     public $text;
 
     public function create()
-    {
-        dd($this->email, $this->text);
+    {   
+        // $messages = Message::orderBy('id', 'DESC')->get();
+
+        // return view('')
+        // dd($this->email, $this->text);
     }
 
     public function render()
-    {
-        return view('livewire.crud-form');
+    {   
+        $messages = Message::orderBy('id', 'DESC')->get();
+
+        return view('livewire.crud-form', ['messages' => $messages]);
     }
 }
